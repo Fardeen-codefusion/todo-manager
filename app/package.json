@@ -1,0 +1,12 @@
+{
+  "name": "todo-manager",
+  "version": "1.0.0",
+  "description": "Production-style To-Do List Task Manager",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

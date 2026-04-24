@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Learn Linux basics",
+    "description": "Understand folders, files, and basic commands",
+    "status": "pending",
+    "priority": "high",
+    "createdAt": "2026-04-24T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Build first Node.js app",
+    "description": "Create a backend API using Express",
+    "status": "in-progress",
+    "priority": "medium",
+    "createdAt": "2026-04-24T10:10:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Deploy app on Kubernetes",
+    "description": "Run the To-Do app in Minikube",
+    "status": "done",
+    "priority": "high",
+    "createdAt": "2026-04-24T10:20:00Z"
+  }
+]
