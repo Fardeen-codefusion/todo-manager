@@ -1,0 +1,47 @@
+name: Deploy To-Do Manager
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v4
+
+      - name: Verify Docker build
+        run: |
+          docker build -t todo-manager:test .
+
+      - name: Deploy to EC2 using SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            echo "Moving to project directory"
+            cd ~/projects/todo-manager
+
+            echo "Pull latest code"
+            git pull origin main
+
+            echo "Use Minikube Docker"
+            eval $(minikube docker-env)
+
+            echo "Build latest Docker image"
+            docker build -t todo-manager:v1 .
+
+            echo "Restart Kubernetes deployment"
+            kubectl rollout restart deployment todo-manager -n todo-app
+
+            echo "Wait for rollout"
+            kubectl rollout status deployment/todo-manager -n todo-app
+
+            echo "Deployment completed successfully"
