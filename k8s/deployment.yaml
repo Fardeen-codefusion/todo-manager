@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: todo-manager
-          image: todo-manager:v1
-          imagePullPolicy: Never
+          image: fardeen2000/todo-manager:v1
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           envFrom:
